@@ -31,19 +31,12 @@ class ImportPathPlugin {
       if (!tag.importPath) continue;
 
       let importPath = tag.importPath;
-      if (packageName) importPath = importPath.replace(new RegExp(`^${packageName}/`), '');
 
       for (let item of option.replaces) {
         importPath = importPath.replace(item.from, item.to);
       }
 
-      if (importPath === mainPath) {
-        tag.importPath = packageName;
-      } else if (packageName) {
-        tag.importPath = `${packageName}/${importPath}`;
-      } else {
-        tag.importPath = importPath;
-      }
+      tag.importPath = importPath;
     }
   }
 }
